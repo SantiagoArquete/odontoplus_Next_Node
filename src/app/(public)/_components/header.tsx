@@ -13,11 +13,12 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import { MenuIcon } from "lucide-react"
+import { LogIn, MenuIcon } from "lucide-react"
 
 export function Header() {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
     const navLinks = [
@@ -35,12 +36,31 @@ export function Header() {
                 >
                     <Link
                         href={itens.href}
+                        className="text-base"
                     >
                         {itens.label}
                     </Link>
                 </Button>
-            ))
-            }
+            ))}
+
+            <Button>
+                {isLoggedIn ?
+                    (
+                        <Link
+                            href="/dashboard">
+                            Painel Profissional
+                        </Link>
+
+                    )
+                    :
+                    (
+                        <>
+                            <LogIn />
+                            Fazer Login
+                        </>
+                    )
+                }
+            </Button>
         </>
     )
 
@@ -64,10 +84,9 @@ export function Header() {
                         </Button>
                     </SheetTrigger>
 
-                    <SheetContent side="right" className="w-[250px] sm:w-[300px] z-[9999]">
-                        <SheetTitle className="px-5 pt-4 font-bold text-2xl">Menu</SheetTitle>
-                        <SheetDescription
-                            className="px-5">
+                    <SheetContent side="right" className="p-3 w-[250px] sm:w-[300px] z-[9999]">
+                        <SheetTitle className="pt-4 font-bold text-2xl">Menu</SheetTitle>
+                        <SheetDescription>
                             Navegue pelo site utilizando as opções abaixo:
                         </SheetDescription>
 
